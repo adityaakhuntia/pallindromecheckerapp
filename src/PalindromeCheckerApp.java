@@ -6,11 +6,11 @@ public class PalindromeCheckerApp {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter a word: ");
+        System.out.print("Enter a sentence: ");
         String input = scanner.nextLine();
 
-        // UC5: Case-insensitive handling
-        String normalized = input.toLowerCase();
+        // UC5 + UC6: case-insensitive and ignore spaces
+        String normalized = input.toLowerCase().replace(" ", "");
 
         String reversed = "";
 
@@ -23,6 +23,10 @@ public class PalindromeCheckerApp {
         } else {
             System.out.println("Not a Palindrome");
         }
+
+        scanner.close();
+    }
+}
 
         scanner.close();
     }
