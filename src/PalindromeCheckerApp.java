@@ -1,8 +1,15 @@
 import java.util.Scanner;
 
+/**
+ * PalindromeCheckerApp
+ * UC1–UC13 Final Version
+ */
 public class PalindromeCheckerApp {
 
-    // UC11 method reused
+    /**
+     * Checks whether the given input is a palindrome.
+     * Ignores case, spaces, and special characters.
+     */
     public static boolean isPalindrome(String input) {
 
         String normalized = input
@@ -16,7 +23,7 @@ public class PalindromeCheckerApp {
         String reversed = "";
 
         for (int i = normalized.length() - 1; i >= 0; i--) {
-            reversed = reversed + normalized.charAt(i);
+            reversed += normalized.charAt(i);
         }
 
         return normalized.equals(reversed);
@@ -26,9 +33,11 @@ public class PalindromeCheckerApp {
 
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("=== Welcome to Palindrome Checker App ===");
+
         while (true) {
 
-            System.out.println("\n--- Palindrome Checker Menu ---");
+            System.out.println("\nMenu:");
             System.out.println("1. Check Palindrome");
             System.out.println("2. Exit");
             System.out.print("Enter your choice: ");
@@ -39,29 +48,29 @@ public class PalindromeCheckerApp {
                 switch (choice) {
 
                     case 1:
-                        System.out.print("Enter value: ");
+                        System.out.print("Enter text: ");
                         String input = scanner.nextLine();
 
                         if (input.trim().isEmpty()) {
-                            System.out.println("Input cannot be empty");
+                            System.out.println("❌ Input cannot be empty");
                         } else if (isPalindrome(input)) {
-                            System.out.println("Palindrome");
+                            System.out.println("✅ Result: Palindrome");
                         } else {
-                            System.out.println("Not a Palindrome");
+                            System.out.println("❌ Result: Not a Palindrome");
                         }
                         break;
 
                     case 2:
-                        System.out.println("Program exited");
+                        System.out.println("Thank you for using Palindrome Checker App.");
                         scanner.close();
                         return;
 
                     default:
-                        System.out.println("Invalid choice. Enter 1 or 2.");
+                        System.out.println("❌ Invalid choice. Please enter 1 or 2.");
                 }
 
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a number.");
+                System.out.println("❌ Invalid input. Please enter a number.");
             }
         }
     }
