@@ -9,13 +9,16 @@ public class PalindromeCheckerApp {
         System.out.print("Enter a word: ");
         String input = scanner.nextLine();
 
+        // UC5: Case-insensitive handling
+        String normalized = input.toLowerCase();
+
         String reversed = "";
 
-        for (int i = input.length() - 1; i >= 0; i--) {
-            reversed = reversed + input.charAt(i);
+        for (int i = normalized.length() - 1; i >= 0; i--) {
+            reversed = reversed + normalized.charAt(i);
         }
 
-        if (input.equals(reversed)) {
+        if (normalized.equals(reversed)) {
             System.out.println("Palindrome");
         } else {
             System.out.println("Not a Palindrome");
