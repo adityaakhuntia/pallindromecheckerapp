@@ -6,24 +6,32 @@ public class PalindromeCheckerApp {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter a value: ");
-        String input = scanner.nextLine();
+        while (true) {
 
-        // UC5–UC8: ignore case, spaces, special characters, keep letters & digits
-        String normalized = input
-                .toLowerCase()
-                .replaceAll("[^a-z0-9]", "");
+            System.out.print("Enter value (or type exit): ");
+            String input = scanner.nextLine();
 
-        String reversed = "";
+            if (input.equalsIgnoreCase("exit")) {
+                System.out.println("Program ended");
+                break;
+            }
 
-        for (int i = normalized.length() - 1; i >= 0; i--) {
-            reversed = reversed + normalized.charAt(i);
-        }
+            // UC5–UC9: ignore case, spaces, special characters, keep letters & digits
+            String normalized = input
+                    .toLowerCase()
+                    .replaceAll("[^a-z0-9]", "");
 
-        if (normalized.equals(reversed)) {
-            System.out.println("Palindrome");
-        } else {
-            System.out.println("Not a Palindrome");
+            String reversed = "";
+
+            for (int i = normalized.length() - 1; i >= 0; i--) {
+                reversed = reversed + normalized.charAt(i);
+            }
+
+            if (normalized.equals(reversed)) {
+                System.out.println("Palindrome");
+            } else {
+                System.out.println("Not a Palindrome");
+            }
         }
 
         scanner.close();
