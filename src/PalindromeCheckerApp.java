@@ -6,13 +6,13 @@ public class PalindromeCheckerApp {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter a sentence: ");
+        System.out.print("Enter a value: ");
         String input = scanner.nextLine();
 
-        // UC5 + UC6 + UC7: ignore case, spaces, and special characters
+        // UC5–UC8: ignore case, spaces, special characters, keep letters & digits
         String normalized = input
                 .toLowerCase()
-                .replaceAll("[^a-z]", "");
+                .replaceAll("[^a-z0-9]", "");
 
         String reversed = "";
 
