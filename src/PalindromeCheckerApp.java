@@ -9,8 +9,10 @@ public class PalindromeCheckerApp {
         System.out.print("Enter a sentence: ");
         String input = scanner.nextLine();
 
-        // UC5 + UC6: case-insensitive and ignore spaces
-        String normalized = input.toLowerCase().replace(" ", "");
+        // UC5 + UC6 + UC7: ignore case, spaces, and special characters
+        String normalized = input
+                .toLowerCase()
+                .replaceAll("[^a-z]", "");
 
         String reversed = "";
 
@@ -23,10 +25,6 @@ public class PalindromeCheckerApp {
         } else {
             System.out.println("Not a Palindrome");
         }
-
-        scanner.close();
-    }
-}
 
         scanner.close();
     }
