@@ -5,35 +5,48 @@ public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+        int choice;
 
         while (true) {
 
-            System.out.print("Enter value (or type exit): ");
-            String input = scanner.nextLine();
+            System.out.println("\n--- Palindrome Checker Menu ---");
+            System.out.println("1. Check Palindrome");
+            System.out.println("2. Exit");
+            System.out.print("Enter your choice: ");
 
-            if (input.equalsIgnoreCase("exit")) {
-                System.out.println("Program ended");
-                break;
-            }
+            choice = Integer.parseInt(scanner.nextLine());
 
-            // UC5–UC9: ignore case, spaces, special characters, keep letters & digits
-            String normalized = input
-                    .toLowerCase()
-                    .replaceAll("[^a-z0-9]", "");
+            switch (choice) {
 
-            String reversed = "";
+                case 1:
+                    System.out.print("Enter value: ");
+                    String input = scanner.nextLine();
 
-            for (int i = normalized.length() - 1; i >= 0; i--) {
-                reversed = reversed + normalized.charAt(i);
-            }
+                    String normalized = input
+                            .toLowerCase()
+                            .replaceAll("[^a-z0-9]", "");
 
-            if (normalized.equals(reversed)) {
-                System.out.println("Palindrome");
-            } else {
-                System.out.println("Not a Palindrome");
+                    String reversed = "";
+
+                    for (int i = normalized.length() - 1; i >= 0; i--) {
+                        reversed = reversed + normalized.charAt(i);
+                    }
+
+                    if (normalized.equals(reversed)) {
+                        System.out.println("Palindrome");
+                    } else {
+                        System.out.println("Not a Palindrome");
+                    }
+                    break;
+
+                case 2:
+                    System.out.println("Program exited");
+                    scanner.close();
+                    return;
+
+                default:
+                    System.out.println("Invalid choice. Try again.");
             }
         }
-
-        scanner.close();
     }
 }
