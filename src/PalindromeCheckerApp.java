@@ -2,10 +2,25 @@ import java.util.Scanner;
 
 public class PalindromeCheckerApp {
 
+    // UC11: Method to check palindrome
+    public static boolean isPalindrome(String input) {
+
+        String normalized = input
+                .toLowerCase()
+                .replaceAll("[^a-z0-9]", "");
+
+        String reversed = "";
+
+        for (int i = normalized.length() - 1; i >= 0; i--) {
+            reversed = reversed + normalized.charAt(i);
+        }
+
+        return normalized.equals(reversed);
+    }
+
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        int choice;
 
         while (true) {
 
@@ -14,7 +29,7 @@ public class PalindromeCheckerApp {
             System.out.println("2. Exit");
             System.out.print("Enter your choice: ");
 
-            choice = Integer.parseInt(scanner.nextLine());
+            int choice = Integer.parseInt(scanner.nextLine());
 
             switch (choice) {
 
@@ -22,17 +37,7 @@ public class PalindromeCheckerApp {
                     System.out.print("Enter value: ");
                     String input = scanner.nextLine();
 
-                    String normalized = input
-                            .toLowerCase()
-                            .replaceAll("[^a-z0-9]", "");
-
-                    String reversed = "";
-
-                    for (int i = normalized.length() - 1; i >= 0; i--) {
-                        reversed = reversed + normalized.charAt(i);
-                    }
-
-                    if (normalized.equals(reversed)) {
+                    if (isPalindrome(input)) {
                         System.out.println("Palindrome");
                     } else {
                         System.out.println("Not a Palindrome");
