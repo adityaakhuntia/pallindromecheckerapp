@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Practice app.iml" filepath="$PROJECT_DIR$/Practice app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PalindromeCheckerApp.java.iml" filepath="$PROJECT_DIR$/PalindromeCheckerApp.java.iml" />
     </modules>
   </component>
 </project>
