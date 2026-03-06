@@ -1,77 +1,89 @@
 import java.util.Scanner;
 
-/**
- * PalindromeCheckerApp
- * UC1–UC13 Final Version
- */
+class Node {
+    char data;
+    Node next;
+
+    Node(char data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
 public class PalindromeCheckerApp {
 
-    /**
-     * Checks whether the given input is a palindrome.
-     * Ignores case, spaces, and special characters.
-     */
-    public static boolean isPalindrome(String input) {
+    static Node createLinkedList(String str) {
+        Node head = null, tail = null;
 
-        String normalized = input
-                .toLowerCase()
-                .replaceAll("[^a-z0-9]", "");
+        for (char c : str.toCharArray()) {
+            Node newNode = new Node(c);
 
-        if (normalized.isEmpty()) {
-            return false;
+            if (head == null) {
+                head = tail = newNode;
+            } else {
+                tail.next = newNode;
+                tail = newNode;
+            }
+        }
+        return head;
+    }
+
+    static Node reverse(Node head) {
+        Node prev = null;
+        Node current = head;
+
+        while (current != null) {
+            Node next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        return prev;
+    }
+
+    static boolean isPalindrome(Node head) {
+
+        if (head == null || head.next == null)
+            return true;
+
+        Node slow = head;
+        Node fast = head;
+
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
 
-        String reversed = "";
+        Node secondHalf = reverse(slow.next);
 
-        for (int i = normalized.length() - 1; i >= 0; i--) {
-            reversed += normalized.charAt(i);
+        Node firstHalf = head;
+        Node temp = secondHalf;
+
+        while (temp != null) {
+            if (firstHalf.data != temp.data)
+                return false;
+
+            firstHalf = firstHalf.next;
+            temp = temp.next;
         }
 
-        return normalized.equals(reversed);
+        return true;
     }
 
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("=== Welcome to Palindrome Checker App ===");
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
 
-        while (true) {
+        Node head = createLinkedList(input);
 
-            System.out.println("\nMenu:");
-            System.out.println("1. Check Palindrome");
-            System.out.println("2. Exit");
-            System.out.print("Enter your choice: ");
+        if (isPalindrome(head))
+            System.out.println("Palindrome");
+        else
+            System.out.println("Not Palindrome");
 
-            try {
-                int choice = Integer.parseInt(scanner.nextLine());
-
-                switch (choice) {
-
-                    case 1:
-                        System.out.print("Enter text: ");
-                        String input = scanner.nextLine();
-
-                        if (input.trim().isEmpty()) {
-                            System.out.println("❌ Input cannot be empty");
-                        } else if (isPalindrome(input)) {
-                            System.out.println("✅ Result: Palindrome");
-                        } else {
-                            System.out.println("❌ Result: Not a Palindrome");
-                        }
-                        break;
-
-                    case 2:
-                        System.out.println("Thank you for using Palindrome Checker App.");
-                        scanner.close();
-                        return;
-
-                    default:
-                        System.out.println("❌ Invalid choice. Please enter 1 or 2.");
-                }
-
-            } catch (NumberFormatException e) {
-                System.out.println("❌ Invalid input. Please enter a number.");
-            }
-        }
+        scanner.close();
     }
 }
